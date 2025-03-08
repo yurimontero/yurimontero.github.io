@@ -12,6 +12,7 @@ string|game_state_lost|VHJ5IEFnYWluIQ==
 string|game_state_reset|UmVzZXQgR2FtZQ==
 string|game_state_won|UGxheSBBZ2FpbiE=
 string|high_score_dialog_cancel|Q2FuY2Vs
+string|high_score_dialog_close|Q2xvc2U=
 string|high_score_dialog_enter_name|RW50ZXIgeW91ciBuYW1l
 string|high_score_dialog_new|Q29uZ3JhdHVsYXRpb25zISBOZXcgSGlnaCBTY29yZSE=
 string|high_score_dialog_submit|U3VibWl0
