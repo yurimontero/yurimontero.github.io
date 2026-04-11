@@ -540,10 +540,10 @@
         },
         {
             "uniqueId": "androidx.compose.material:material-ripple",
-            "artifactVersion": "1.9.0-rc01",
+            "artifactVersion": "1.9.3",
             "name": "Compose Material Ripple",
             "description": "Material ripple used to build interactive components",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material#1.9.0-rc01",
+            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material#1.9.3",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -2406,7 +2406,7 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.lifecycle:lifecycle-common",
-            "artifactVersion": "2.10.0",
+            "artifactVersion": "2.9.6",
             "name": "Lifecycle-Common",
             "description": "Android Lifecycle-Common",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -2430,7 +2430,7 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.lifecycle:lifecycle-runtime",
-            "artifactVersion": "2.10.0",
+            "artifactVersion": "2.9.6",
             "name": "Lifecycle Runtime",
             "description": "Android Lifecycle Runtime",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -2454,7 +2454,7 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.lifecycle:lifecycle-runtime-compose",
-            "artifactVersion": "2.10.0",
+            "artifactVersion": "2.9.6",
             "name": "Lifecycle Runtime Compose",
             "description": "Compose integration with Lifecycle",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -2478,7 +2478,7 @@
         },
         {
             "uniqueId": "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel",
-            "artifactVersion": "2.10.0",
+            "artifactVersion": "2.9.6",
             "name": "Lifecycle ViewModel",
             "description": "Android Lifecycle ViewModel",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -2813,30 +2813,6 @@
             ]
         },
         {
-            "uniqueId": "org.jetbrains.compose.components:components-ui-tooling-preview",
-            "artifactVersion": "1.10.3",
-            "name": "Experimental Compose Multiplatform tooling library API. This library provides the API required to declare @Preview composables in user apps.",
-            "description": "Experimental Compose Multiplatform tooling library API. This library provides the API required to declare @Preview composables in user apps.",
-            "website": "https://github.com/JetBrains/compose-jb",
-            "developers": [
-                {
-                    "name": "Compose Multiplatform Team",
-                    "organisationUrl": "https://www.jetbrains.com"
-                }
-            ],
-            "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "developerConnection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "url": "https://github.com/JetBrains/compose-jb"
-            },
-            "licenses": [
-                "Apache-2.0"
-            ],
-            "funding": [
-                
-            ]
-        },
-        {
             "uniqueId": "org.jetbrains.compose.desktop:desktop-jvm-macos-arm64",
             "artifactVersion": "1.10.3",
             "name": "Compose Desktop",
@@ -3066,7 +3042,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.material3:material3",
-            "artifactVersion": "1.9.0-beta03",
+            "artifactVersion": "1.9.0",
             "name": "Compose Material3 Components",
             "description": "Compose Material You Design Components library",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -3186,7 +3162,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.material:material-ripple",
-            "artifactVersion": "1.9.0-beta03",
+            "artifactVersion": "1.9.1",
             "name": "Compose Material Ripple",
             "description": "Material ripple used to build interactive components",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -3282,7 +3258,7 @@
         },
         {
             "uniqueId": "org.jetbrains.compose.ui:ui-backhandler",
-            "artifactVersion": "1.9.0-beta03",
+            "artifactVersion": "1.9.1",
             "name": "Compose Multiplatform BackHandler",
             "description": "Provides BackHandler in Compose Multiplatform projects",
             "website": "https://github.com/JetBrains/compose-jb",
@@ -3890,7 +3866,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-bom",
-            "artifactVersion": "1.10.0",
+            "artifactVersion": "1.11.0",
             "name": "kotlinx-serialization-bom",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -3912,7 +3888,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-core",
-            "artifactVersion": "1.10.0",
+            "artifactVersion": "1.11.0",
             "name": "kotlinx-serialization-core",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
@@ -3934,7 +3910,7 @@
         },
         {
             "uniqueId": "org.jetbrains.kotlinx:kotlinx-serialization-json-jvm",
-            "artifactVersion": "1.10.0",
+            "artifactVersion": "1.11.0",
             "name": "kotlinx-serialization-json",
             "description": "Kotlin multiplatform serialization runtime library",
             "website": "https://github.com/Kotlin/kotlinx.serialization",
