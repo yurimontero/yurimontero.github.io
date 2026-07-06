@@ -467,56 +467,6 @@
             ]
         },
         {
-            "uniqueId": "androidx.compose.material:material-icons-core-android",
-            "artifactVersion": "1.7.6",
-            "name": "Compose Material Icons Core",
-            "description": "Compose Material Design core icons. This module contains the most commonly used set of Material icons.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material#1.7.6",
-            "developers": [
-                {
-                    "name": "The Android Open Source Project"
-                }
-            ],
-            "organization": {
-                "name": "The Android Open Source Project"
-            },
-            "scm": {
-                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
-                "url": "https://cs.android.com/androidx/platform/frameworks/support"
-            },
-            "licenses": [
-                "Apache-2.0"
-            ],
-            "funding": [
-                
-            ]
-        },
-        {
-            "uniqueId": "androidx.compose.material:material-icons-extended-android",
-            "artifactVersion": "1.7.6",
-            "name": "Compose Material Icons Extended",
-            "description": "Compose Material Design extended icons. This module contains all Material icons. It is a very large dependency and should not be included directly.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/compose-material#1.7.6",
-            "developers": [
-                {
-                    "name": "The Android Open Source Project"
-                }
-            ],
-            "organization": {
-                "name": "The Android Open Source Project"
-            },
-            "scm": {
-                "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
-                "url": "https://cs.android.com/androidx/platform/frameworks/support"
-            },
-            "licenses": [
-                "Apache-2.0"
-            ],
-            "funding": [
-                
-            ]
-        },
-        {
             "uniqueId": "androidx.compose.material:material-ripple-android",
             "artifactVersion": "1.9.3",
             "name": "Compose Material Ripple",
@@ -1629,10 +1579,10 @@
         },
         {
             "uniqueId": "androidx.navigation3:navigation3-runtime-android",
-            "artifactVersion": "1.1.3",
+            "artifactVersion": "1.1.4",
             "name": "Androidx Navigation 3 Runtime",
             "description": "Provides the building blocks for a Compose first Navigation solution that easily supports extensions.",
-            "website": "https://developer.android.com/jetpack/androidx/releases/navigation3#1.1.3",
+            "website": "https://developer.android.com/jetpack/androidx/releases/navigation3#1.1.4",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
@@ -1923,15 +1873,18 @@
         },
         {
             "uniqueId": "androidx.startup:startup-runtime",
-            "artifactVersion": "1.1.1",
-            "name": "Android App Startup Runtime",
+            "artifactVersion": "1.2.0",
+            "name": "Startup Runtime",
             "description": "Android App Startup Runtime",
-            "website": "https://developer.android.com/jetpack/androidx/releases/startup#1.1.1",
+            "website": "https://developer.android.com/jetpack/androidx/releases/startup#1.2.0",
             "developers": [
                 {
                     "name": "The Android Open Source Project"
                 }
             ],
+            "organization": {
+                "name": "The Android Open Source Project"
+            },
             "scm": {
                 "connection": "scm:git:https://android.googlesource.com/platform/frameworks/support",
                 "url": "https://cs.android.com/androidx/platform/frameworks/support"
@@ -2282,6 +2235,27 @@
                 "connection": "scm:git@github.com:mikepenz/AboutLibraries.git",
                 "developerConnection": "scm:git@github.com:mikepenz/AboutLibraries.git",
                 "url": "https://github.com/mikepenz/AboutLibraries"
+            },
+            "licenses": [
+                "Apache-2.0"
+            ],
+            "funding": [
+                
+            ]
+        },
+        {
+            "uniqueId": "com.russhwolf:multiplatform-settings-android",
+            "artifactVersion": "1.3.0",
+            "name": "Multiplatform Settings",
+            "description": "A Kotlin Multiplatform library for saving simple key-value data",
+            "website": "https://github.com/russhwolf/multiplatform-settings",
+            "developers": [
+                {
+                    "name": "Russell Wolf"
+                }
+            ],
+            "scm": {
+                "url": "https://github.com/russhwolf/multiplatform-settings"
             },
             "licenses": [
                 "Apache-2.0"
@@ -3021,54 +2995,6 @@
             ]
         },
         {
-            "uniqueId": "org.jetbrains.compose.material:material-icons-core",
-            "artifactVersion": "1.7.3",
-            "name": "Compose Material Icons Core",
-            "description": "Compose Material Design core icons. This module contains the most commonly used set of Material icons.",
-            "website": "https://github.com/JetBrains/compose-jb",
-            "developers": [
-                {
-                    "name": "Compose Multiplatform Team",
-                    "organisationUrl": "https://www.jetbrains.com"
-                }
-            ],
-            "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "developerConnection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "url": "https://github.com/JetBrains/compose-jb"
-            },
-            "licenses": [
-                "Apache-2.0"
-            ],
-            "funding": [
-                
-            ]
-        },
-        {
-            "uniqueId": "org.jetbrains.compose.material:material-icons-extended",
-            "artifactVersion": "1.7.3",
-            "name": "Compose Material Icons Extended",
-            "description": "Compose Material Design extended icons. This module contains all Material icons. It is a very large dependency and should not be included directly.",
-            "website": "https://github.com/JetBrains/compose-jb",
-            "developers": [
-                {
-                    "name": "Compose Multiplatform Team",
-                    "organisationUrl": "https://www.jetbrains.com"
-                }
-            ],
-            "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "developerConnection": "scm:git:https://github.com/JetBrains/compose-jb.git",
-                "url": "https://github.com/JetBrains/compose-jb"
-            },
-            "licenses": [
-                "Apache-2.0"
-            ],
-            "funding": [
-                
-            ]
-        },
-        {
             "uniqueId": "org.jetbrains.compose.material:material-ripple",
             "artifactVersion": "1.9.1",
             "name": "Compose Material Ripple",
@@ -3433,30 +3359,6 @@
             "artifactVersion": "2.4.0",
             "name": "Kotlin Stdlib",
             "description": "Kotlin Standard Library",
-            "website": "https://kotlinlang.org/",
-            "developers": [
-                {
-                    "name": "Kotlin Team",
-                    "organisationUrl": "https://www.jetbrains.com"
-                }
-            ],
-            "scm": {
-                "connection": "scm:git:https://github.com/JetBrains/kotlin.git",
-                "developerConnection": "scm:git:https://github.com/JetBrains/kotlin.git",
-                "url": "https://github.com/JetBrains/kotlin"
-            },
-            "licenses": [
-                "Apache-2.0"
-            ],
-            "funding": [
-                
-            ]
-        },
-        {
-            "uniqueId": "org.jetbrains.kotlin:kotlin-stdlib-common",
-            "artifactVersion": "2.4.0",
-            "name": "Kotlin Stdlib Common",
-            "description": "Kotlin Common Standard Library (legacy, use kotlin-stdlib instead)",
             "website": "https://kotlinlang.org/",
             "developers": [
                 {
