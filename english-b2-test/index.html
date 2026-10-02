@@ -138,9 +138,9 @@
       <p class="q" id="question"></p>
       <div class="opts" id="opts" role="group" aria-label="Opciones de respuesta"></div>
       <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
-      <div class="actions"><button class="btn hidden" id="next">Siguiente →</button></div>
+      <div class="actions"><button class="btn secondary" id="solve">Ver respuesta</button><button class="btn hidden" id="next">Siguiente →</button></div>
     </div>
-    <p class="hint">Atajos: teclas 1–4 o A–D para responder, Enter para continuar.</p>
+    <p class="hint">Atajos: teclas 1–4 o A–D para responder, R para ver la respuesta, Enter para continuar.</p>
   </section>
 
   <!-- RESULTADO -->
@@ -234,6 +234,7 @@
     ).join("");
     $("feedback").classList.add("hidden");
     $("next").classList.add("hidden");
+    $("solve").classList.remove("hidden");
     $("next").textContent = i === items.length - 1 ? "Ver resultado" : "Siguiente →";
   }
 
@@ -242,7 +243,7 @@
     state.answered = true;
     const it = state.items[state.i];
     const chosen = it.options[k];
-    const ok = chosen === it.correct;
+    const ok = k >= 0 && chosen === it.correct;
     const btns = [...$("opts").children];
     btns.forEach((b, idx) => {
       b.disabled = true;
@@ -256,10 +257,11 @@
     fb.className = "feedback " + (ok ? "ok" : "bad");
     fb.innerHTML = ok
       ? "¡Correcto!"
-      : `Incorrecto<small>La respuesta correcta es: <b>${esc(it.correct)}</b></small>`;
-    if (ok) state.score++; else state.wrongs.push({ stem: it.stem, chosen, correct: it.correct });
+      : `${k < 0 ? "Respuesta mostrada" : "Incorrecto"}<small>La respuesta correcta es: <b>${esc(it.correct)}</b></small>`;
+    if (ok) state.score++; else state.wrongs.push({ stem: it.stem, chosen: k < 0 ? "Respuesta mostrada" : chosen, correct: it.correct });
     $("scoreLive").textContent = state.score;
     $("progress").style.width = ((state.i + 1) / state.items.length * 100) + "%";
+    $("solve").classList.add("hidden");
     $("next").classList.remove("hidden");
     $("next").focus();
   }
@@ -302,6 +304,7 @@
     if (b) answer(+b.dataset.k);
   });
   $("next").addEventListener("click", next);
+  $("solve").addEventListener("click", () => answer(-1));
   $("back").addEventListener("click", renderMenu);
   $("toMenu").addEventListener("click", renderMenu);
   $("retry").addEventListener("click", () => start(state.level));
@@ -314,6 +317,7 @@
     const key = e.key.toLowerCase();
     const idx = "1234".includes(key) && key.length === 1 ? +key - 1 : "abcd".indexOf(key);
     if (key.length === 1 && idx >= 0 && idx < 4) { answer(idx); return; }
+    if (key === "r") { answer(-1); return; }
     if (key === "enter" && state.answered && document.activeElement !== $("next")) next();
   });
 
