@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>English B2 Test</title>
+<style>
+  :root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1b2033;
+    --muted: #667088;
+    --border: #dde1ec;
+    --accent: #3b5bdb;
+    --accent-soft: #e7ecff;
+    --ok: #1f9d55;
+    --ok-bg: #e3f6ea;
+    --bad: #d6336c;
+    --bad-bg: #fde6ee;
+    --shadow: 0 1px 2px rgba(20,30,60,.06), 0 6px 20px rgba(20,30,60,.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12141c; --card: #1b1e29; --text: #eceef6; --muted: #98a0b8;
+      --border: #2e3345; --accent: #7c95ff; --accent-soft: #252c4d;
+      --ok: #4cd18a; --ok-bg: #173a2a; --bad: #ff6b9b; --bad-bg: #44202e;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.7rem; margin: 8px 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  .hidden { display: none !important; }
+
+  /* Menú de niveles */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+  .level {
+    text-align: left; background: var(--card); border: 1px solid var(--border);
+    border-radius: 14px; padding: 16px; cursor: pointer; color: inherit;
+    box-shadow: var(--shadow); font: inherit; transition: transform .12s, border-color .12s;
+  }
+  .level:hover, .level:focus-visible { transform: translateY(-2px); border-color: var(--accent); outline: none; }
+  .level .num { font-size: .8rem; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
+  .level .name { font-weight: 650; margin: 2px 0 2px; }
+  .level .topic { color: var(--muted); font-size: .85rem; min-height: 2.6em; }
+  .level .best { margin-top: 10px; font-size: .85rem; display: flex; justify-content: space-between; align-items: center; }
+  .bar { height: 6px; background: var(--accent-soft); border-radius: 99px; overflow: hidden; margin-top: 6px; }
+  .bar > i { display: block; height: 100%; background: var(--accent); border-radius: 99px; transition: width .25s; }
+  .done .bar > i { background: var(--ok); }
+
+  /* Cabecera del quiz */
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+  .link { background: none; border: 0; color: var(--accent); font: inherit; cursor: pointer; padding: 6px 0; }
+  .meta { color: var(--muted); font-size: .9rem; }
+  .meta b { color: var(--text); }
+
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; box-shadow: var(--shadow); margin-top: 14px; }
+  .q { font-size: 1.25rem; font-weight: 600; margin: 0 0 18px; }
+  .blank { display: inline-block; min-width: 3.2em; border-bottom: 2px solid var(--accent); text-align: center; color: var(--accent); font-weight: 700; padding: 0 4px; }
+  .blank.filled.ok { color: var(--ok); border-color: var(--ok); }
+  .blank.filled.bad { color: var(--bad); border-color: var(--bad); }
+
+  .opts { display: grid; gap: 10px; }
+  .opt {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+    background: var(--card); color: inherit; font: inherit;
+    border: 2px solid var(--border); border-radius: 12px; padding: 12px 14px; cursor: pointer;
+    transition: border-color .12s, background .12s;
+  }
+  .opt:hover:not(:disabled), .opt:focus-visible { border-color: var(--accent); outline: none; }
+  .opt .k {
+    flex: none; width: 28px; height: 28px; border-radius: 8px; display: grid; place-items: center;
+    background: var(--accent-soft); color: var(--accent); font-weight: 700; font-size: .85rem;
+  }
+  .opt:disabled { cursor: default; }
+  .opt.correct { border-color: var(--ok); background: var(--ok-bg); }
+  .opt.correct .k { background: var(--ok); color: #fff; }
+  .opt.wrong { border-color: var(--bad); background: var(--bad-bg); }
+  .opt.wrong .k { background: var(--bad); color: #fff; }
+  .opt.dim { opacity: .55; }
+  .opt .tag { margin-left: auto; font-size: .8rem; font-weight: 700; }
+  .opt.correct .tag { color: var(--ok); }
+  .opt.wrong .tag { color: var(--bad); }
+
+  .feedback { margin-top: 16px; padding: 12px 14px; border-radius: 12px; font-weight: 600; }
+  .feedback.ok { background: var(--ok-bg); color: var(--ok); }
+  .feedback.bad { background: var(--bad-bg); color: var(--bad); }
+  .feedback small { display: block; font-weight: 400; color: var(--text); margin-top: 2px; }
+
+  .btn {
+    background: var(--accent); color: #fff; border: 0; border-radius: 12px; padding: 12px 22px;
+    font: inherit; font-weight: 650; cursor: pointer;
+  }
+  .btn.secondary { background: var(--accent-soft); color: var(--accent); }
+  .btn:focus-visible { outline: 3px solid var(--accent-soft); outline-offset: 2px; }
+  .actions { display: flex; justify-content: flex-end; margin-top: 16px; gap: 10px; flex-wrap: wrap; }
+
+  /* Resultado */
+  .result { text-align: center; }
+  .score { font-size: 3.2rem; font-weight: 800; margin: 6px 0; }
+  .verdict { color: var(--muted); margin-bottom: 18px; }
+  .review { text-align: left; margin-top: 22px; border-top: 1px solid var(--border); padding-top: 12px; }
+  .review summary { cursor: pointer; font-weight: 600; }
+  .review ol { padding-left: 20px; margin: 10px 0 0; }
+  .review li { margin-bottom: 8px; font-size: .92rem; }
+  .review .you { color: var(--bad); }
+  .review .right { color: var(--ok); font-weight: 600; }
+  .result .actions { justify-content: center; }
+  .hint { color: var(--muted); font-size: .8rem; margin-top: 14px; text-align: center; }
+  .reset { margin-top: 28px; text-align: center; }
+</style>
+</head>
+<body>
+<main>
+  <!-- MENÚ -->
+  <section id="menu">
+    <h1>English B2 Test</h1>
+    <p class="sub">10 niveles · 20 preguntas por nivel · 4 opciones de respuesta. Al responder verás si has acertado y, si fallas, cuál era la correcta.</p>
+    <div class="grid" id="grid"></div>
+    <div class="reset"><button class="link" id="resetAll">Borrar progreso</button></div>
+  </section>
+
+  <!-- QUIZ -->
+  <section id="quiz" class="hidden">
+    <div class="top">
+      <button class="link" id="back">← Niveles</button>
+      <div class="meta" id="levelLabel"></div>
+      <div class="meta">Aciertos: <b id="scoreLive">0</b></div>
+    </div>
+    <div class="bar"><i id="progress" style="width:0"></i></div>
+    <div class="card">
+      <div class="meta" id="counter"></div>
+      <p class="q" id="question"></p>
+      <div class="opts" id="opts" role="group" aria-label="Opciones de respuesta"></div>
+      <div id="feedback" class="feedback hidden" role="status" aria-live="polite"></div>
+      <div class="actions"><button class="btn hidden" id="next">Siguiente →</button></div>
+    </div>
+    <p class="hint">Atajos: teclas 1–4 o A–D para responder, Enter para continuar.</p>
+  </section>
+
+  <!-- RESULTADO -->
+  <section id="resultView" class="hidden">
+    <div class="card result">
+      <div class="meta" id="resLevel"></div>
+      <div class="score" id="resScore"></div>
+      <div class="verdict" id="resVerdict"></div>
+      <div class="actions">
+        <button class="btn secondary" id="retry">Repetir nivel</button>
+        <button class="btn" id="nextLevel">Siguiente nivel →</button>
+        <button class="btn secondary" id="toMenu">Todos los niveles</button>
+      </div>
+      <details class="review" id="review">
+        <summary>Ver mis errores</summary>
+        <ol id="reviewList"></ol>
+      </details>
+    </div>
+  </section>
+</main>
+
+<script src="questions.js"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const KEY = "englishB2.best.v1";
+  const LETTERS = ["A", "B", "C", "D"];
+
+  // Almacenamiento seguro (puede fallar en modo privado)
+  let best = {};
+  try { best = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { best = {}; }
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(best)); } catch (e) {} };
+
+  const shuffle = arr => {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  const esc = s => s.replace(/[&<>]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[c]));
+  const stemHtml = (stem, fill, cls) => {
+    const blank = `<span class="blank ${fill ? "filled " + cls : ""}">${fill ? esc(fill) : "&nbsp;"}</span>`;
+    return esc(stem).replace("____", blank);
+  };
+
+  let state = null; // {level, items, i, score, answered, wrongs}
+
+  function show(view) {
+    ["menu", "quiz", "resultView"].forEach(v => $(v).classList.toggle("hidden", v !== view));
+    window.scrollTo(0, 0);
+  }
+
+  function renderMenu() {
+    $("grid").innerHTML = LEVELS.map((l, i) => {
+      const b = best[i];
+      const pct = b == null ? 0 : Math.round(b / l.q.length * 100);
+      return `<button class="level ${b === l.q.length ? "done" : ""}" data-i="${i}">
+        <div class="num">Nivel ${i + 1}</div>
+        <div class="name">${esc(l.name)}</div>
+        <div class="topic">${esc(l.topic)}</div>
+        <div class="best"><span>${b == null ? "Sin intentar" : "Mejor: " + b + "/" + l.q.length}</span><span>${b == null ? "" : pct + "%"}</span></div>
+        <div class="bar"><i style="width:${pct}%"></i></div>
+      </button>`;
+    }).join("");
+    show("menu");
+  }
+
+  function start(levelIdx) {
+    const level = LEVELS[levelIdx];
+    const items = shuffle(level.q).map(([stem, correct, ...wrong]) => ({
+      stem, correct, options: shuffle([correct, ...wrong])
+    }));
+    state = { level: levelIdx, items, i: 0, score: 0, answered: false, wrongs: [] };
+    $("levelLabel").textContent = `Nivel ${levelIdx + 1} · ${level.name}`;
+    show("quiz");
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const { items, i } = state;
+    const it = items[i];
+    state.answered = false;
+    $("counter").textContent = `Pregunta ${i + 1} de ${items.length}`;
+    $("progress").style.width = (i / items.length * 100) + "%";
+    $("scoreLive").textContent = state.score;
+    $("question").innerHTML = stemHtml(it.stem);
+    $("opts").innerHTML = it.options.map((o, k) =>
+      `<button class="opt" data-k="${k}"><span class="k">${LETTERS[k]}</span><span class="t">${esc(o)}</span><span class="tag"></span></button>`
+    ).join("");
+    $("feedback").classList.add("hidden");
+    $("next").classList.add("hidden");
+    $("next").textContent = i === items.length - 1 ? "Ver resultado" : "Siguiente →";
+  }
+
+  function answer(k) {
+    if (state.answered) return;
+    state.answered = true;
+    const it = state.items[state.i];
+    const chosen = it.options[k];
+    const ok = chosen === it.correct;
+    const btns = [...$("opts").children];
+    btns.forEach((b, idx) => {
+      b.disabled = true;
+      const txt = it.options[idx];
+      if (txt === it.correct) { b.classList.add("correct"); b.querySelector(".tag").textContent = "✓ Correcta"; }
+      else if (idx === k) { b.classList.add("wrong"); b.querySelector(".tag").textContent = "✗ Tu respuesta"; }
+      else b.classList.add("dim");
+    });
+    $("question").innerHTML = stemHtml(it.stem, it.correct, ok ? "ok" : "bad");
+    const fb = $("feedback");
+    fb.className = "feedback " + (ok ? "ok" : "bad");
+    fb.innerHTML = ok
+      ? "¡Correcto!"
+      : `Incorrecto<small>La respuesta correcta es: <b>${esc(it.correct)}</b></small>`;
+    if (ok) state.score++; else state.wrongs.push({ stem: it.stem, chosen, correct: it.correct });
+    $("scoreLive").textContent = state.score;
+    $("progress").style.width = ((state.i + 1) / state.items.length * 100) + "%";
+    $("next").classList.remove("hidden");
+    $("next").focus();
+  }
+
+  function next() {
+    if (!state.answered) return;
+    if (state.i < state.items.length - 1) { state.i++; renderQuestion(); }
+    else finish();
+  }
+
+  function finish() {
+    const { level, score, items, wrongs } = state;
+    const total = items.length;
+    const pct = Math.round(score / total * 100);
+    if (best[level] == null || score > best[level]) { best[level] = score; save(); }
+    $("resLevel").textContent = `Nivel ${level + 1} · ${LEVELS[level].name}`;
+    $("resScore").textContent = `${score}/${total}`;
+    let msg = pct >= 90 ? "¡Excelente! Dominas este nivel." :
+              pct >= 70 ? "Muy bien, nivel B2 sólido." :
+              pct >= 50 ? "Vas bien, repasa los errores y vuelve a intentarlo." :
+                          "Necesitas repasar este tema. ¡Inténtalo de nuevo!";
+    $("resVerdict").textContent = `${pct}% de aciertos. ${msg}`;
+    $("nextLevel").classList.toggle("hidden", level >= LEVELS.length - 1);
+    const rv = $("review");
+    rv.classList.toggle("hidden", wrongs.length === 0);
+    rv.open = false;
+    $("reviewList").innerHTML = wrongs.map(w =>
+      `<li>${esc(w.stem).replace("____", `<b class="right">${esc(w.correct)}</b>`)}<br><span class="you">Tu respuesta: ${esc(w.chosen)}</span></li>`
+    ).join("");
+    show("resultView");
+  }
+
+  // Eventos
+  $("grid").addEventListener("click", e => {
+    const b = e.target.closest(".level");
+    if (b) start(+b.dataset.i);
+  });
+  $("opts").addEventListener("click", e => {
+    const b = e.target.closest(".opt");
+    if (b) answer(+b.dataset.k);
+  });
+  $("next").addEventListener("click", next);
+  $("back").addEventListener("click", renderMenu);
+  $("toMenu").addEventListener("click", renderMenu);
+  $("retry").addEventListener("click", () => start(state.level));
+  $("nextLevel").addEventListener("click", () => start(state.level + 1));
+  $("resetAll").addEventListener("click", () => {
+    if (confirm("¿Borrar todos los resultados guardados?")) { best = {}; save(); renderMenu(); }
+  });
+  document.addEventListener("keydown", e => {
+    if ($("quiz").classList.contains("hidden")) return;
+    const key = e.key.toLowerCase();
+    const idx = "1234".includes(key) && key.length === 1 ? +key - 1 : "abcd".indexOf(key);
+    if (key.length === 1 && idx >= 0 && idx < 4) { answer(idx); return; }
+    if (key === "enter" && state.answered && document.activeElement !== $("next")) next();
+  });
+
+  renderMenu();
+})();
+</script>
+</body>
+</html>
